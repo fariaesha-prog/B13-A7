@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FiPhone, FiMessageCircle, FiVideo } from "react-icons/fi";
+import { FiPhone, FiMessageCircle, FiVideo }
+ from "react-icons/fi";
+ import { useTimeline } from "../context/TimelineContext";
 
 export default function FriendDetails() {
   const { id } = useParams();
   const [friend, setFriend] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const { addEntry } = useTimeline();
   const statusStyles = {
     overdue: "bg-red-100 text-red-700",
     "almost due": "bg-amber-100 text-amber-700",
     "on-track": "bg-emerald-100 text-emerald-700",
+  };
+
+  const handleAction = (type) => {
+    const entry = {
+      id: Date.now(),
+      friendName: friend.name,
+      type,
+      title: `${type} with ${friend.name}`,
+      date: new Date().toLocaleString(),
+    };
+
+    addEntry(entry);
   };
 
   useEffect(() => {
@@ -105,15 +119,15 @@ export default function FriendDetails() {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
-              <button className="flex flex-col items-center justify-center gap-2 rounded-none border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+              <button onClick={() => handleAction("Call")} className="flex flex-col items-center justify-center gap-2 rounded-none border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
                 <FiPhone className="h-5 w-5 text-slate-900" />
                 Call
               </button>
-              <button className="flex flex-col items-center justify-center gap-2 rounded-none border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+              <button onClick={() => handleAction("Text")} className="flex flex-col items-center justify-center gap-2 rounded-none border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
                 <FiMessageCircle className="h-5 w-5 text-slate-900" />
                 Text
               </button>
-              <button className="flex flex-col items-center justify-center gap-2 rounded-none border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+              <button onClick={() => handleAction("Video")} className="flex flex-col items-center justify-center gap-2 rounded-none border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
                 <FiVideo className="h-5 w-5 text-slate-900" />
                 Video
               </button>
