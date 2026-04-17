@@ -7,7 +7,7 @@ const Navbar = () => {
     const { pathname } = useLocation();
 
     return (
-        <header className="bg-white border-b-0 shadow-none">
+        <header className="bg-white">
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                 <h1 className="text-2xl font-bold text-[#244D3F]">KeenKeeper</h1>
                 

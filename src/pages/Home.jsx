@@ -24,7 +24,7 @@ useEffect(() => {
       <div className="max-w-7xl mx-auto px-6 py-12">
       
       {/* Banner */}
-      <div className="text-center mb-12 pb-8 border-b">
+      <div className="text-center mb-12 pb-8">
         <h1 className="text-4xl font-bold mb-3 text-slate-900">
           Friends to keep close in your life
         </h1>
@@ -38,7 +38,7 @@ useEffect(() => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 pb-8 border-b">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 pb-8">
         <div className="p-6 bg-slate-50 rounded-3xl text-center shadow-sm">
           <div className="text-4xl font-bold text-slate-900 mb-2">10</div>
           <div className="text-sm text-gray-600">Total Friends</div>
