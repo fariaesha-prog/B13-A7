@@ -1,12 +1,16 @@
 import { Outlet } from 'react-router-dom'
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="flex flex-col min-h-screen bg-white text-slate-900">
       <NavBar />
-      <Outlet />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader/Loader";
 
 export default function Home() {
   const navigate = useNavigate();
   const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const statusStyles = {
     overdue: "bg-red-100 text-red-700",
@@ -15,9 +17,15 @@ export default function Home() {
 useEffect(() => {
   fetch("/friends.json")
     .then((res) => res.json())
-    .then((data) => setFriends(data));
+    .then((data) => {
+      setFriends(data);
+      setLoading(false);
+    });
 }, []);
 
+if (loading) {
+  return <Loader />;
+}
 
   return (
     <div className="bg-white min-h-screen">

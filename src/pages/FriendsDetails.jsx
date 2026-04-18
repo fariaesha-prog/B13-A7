@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FiPhone, FiMessageCircle, FiVideo }
- from "react-icons/fi";
- import { useTimeline } from "../context/TimelineContext";
+import { FiPhone, FiMessageCircle, FiVideo } from "react-icons/fi";
+import { toast } from "react-toastify";
+import { useTimeline } from "../context/TimelineContext";
 
 export default function FriendDetails() {
   const { id } = useParams();
@@ -25,6 +25,15 @@ export default function FriendDetails() {
     };
 
     addEntry(entry);
+    toast.success(`${type} started with ${friend.name}`, {
+      position: "top-right",
+      autoClose: 2200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   useEffect(() => {
